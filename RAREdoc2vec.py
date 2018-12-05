@@ -23,10 +23,13 @@ def read_corpus(fname, tokens_only=False):
 train_corpus = list(read_corpus(lee_train_file))
 test_corpus = list(read_corpus(lee_test_file, tokens_only=True))
 
+print("LOL IS THIS GONNA PRINT A LOT")
 
-# print(train_corpus[:2])
-# print(test_corpus[:2])
+print(train_corpus)
+print(test_corpus)
 
+
+print("LOL IDK HOW IT WENT, GOODLUCK")
 
 model = gensim.models.doc2vec.Doc2Vec(vector_size=50, min_count=2, epochs=40)
 
@@ -46,6 +49,7 @@ for doc_id in range(len(train_corpus)):
     
     second_ranks.append(sims[1])
 
+print("COLLECTIONS.COUNTER(RANKS)")
 print(collections.Counter(ranks))  # Results vary between runs due to random seeding and very small corpus
 
 print('Document ({}): «{}»\n'.format(doc_id, ' '.join(train_corpus[doc_id].words)))
