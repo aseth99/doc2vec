@@ -20,7 +20,7 @@ def read_corpus(fname, tokens_only=False):
                 # For training data, add tags
                 yield gensim.models.doc2vec.TaggedDocument(gensim.utils.simple_preprocess(line), [i])
 
-train_corpus = list(read_corpus(lee_train_file))
+train_corpus = list(read_corpus("testData.txt"))
 test_corpus = list(read_corpus(lee_test_file, tokens_only=True))
 
 print("LOL IS THIS GONNA PRINT A LOT")
