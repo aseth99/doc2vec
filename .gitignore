@@ -3,3 +3,7 @@ neg
 testData.txt
 user_timeline_dutchdailynews.json
 user_timeline_DutchNewsNL.json
+all.zip
+all
+.DS_Store
+__pycache__
