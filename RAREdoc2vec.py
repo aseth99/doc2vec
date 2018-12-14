@@ -20,7 +20,7 @@ def read_corpus(fname, tokens_only=False):
                 # For training data, add tags
                 yield gensim.models.doc2vec.TaggedDocument(gensim.utils.simple_preprocess(line), [i])
 
-train_corpus = list(read_corpus("testData.txt"))
+train_corpus = list(read_corpus("newsData.txt"))
 test_corpus = list(read_corpus(lee_test_file, tokens_only=True))
 
 print("LOL IS THIS GONNA PRINT A LOT")
@@ -31,7 +31,7 @@ print(test_corpus)
 
 print("LOL IDK HOW IT WENT, GOODLUCK")
 
-model = gensim.models.doc2vec.Doc2Vec(vector_size=50, min_count=2, epochs=40)
+model = gensim.models.doc2vec.Doc2Vec(vector_size=50, min_count=2, epochs=10)
 
 model.build_vocab(train_corpus)
 
@@ -81,3 +81,8 @@ print(u'SIMILAR/DISSIMILAR DOCS PER MODEL %s:\n' % model)
 for label, index in [('MOST', 0), ('MEDIAN', len(sims)//2), ('LEAST', len(sims) - 1)]:
 	print(u'%s %s: «%s»\n' % (label, sims[index], ' '.join(train_corpus[sims[index][0]].words)))
 	print("DONee")
+
+
+#not sure if this will wokr
+model.save("RAREd2v.model")
+print("Model Saved")

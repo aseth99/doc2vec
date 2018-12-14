@@ -4,7 +4,7 @@ import csv
 
 
 # chooseName = input("\nWhat should we name the txt file?\n\n\n")
-txtFileName = "testData.txt"
+txtFileName = "newsData.txt"
 
 
 
@@ -23,7 +23,7 @@ tweets = []
 #     exitClause = input("(type done if finished)\n\n@")
 #     if exitClause == "done":
 #     	break
-jsonFileToBeOpened = "user_timeline_dutchdailynews.json"
+jsonFileToBeOpened = "news.json"
 for line in open(jsonFileToBeOpened, 'r'):
     tweets.append(json.loads(line))
 
