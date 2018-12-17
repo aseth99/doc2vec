@@ -28,7 +28,7 @@ def read_corpus(fname, tokens_only=False):
                 yield gensim.models.doc2vec.TaggedDocument(gensim.utils.simple_preprocess(line), [i])
 
 print("bout to process txt data...")
-test_corpus = list(read_corpus("newsData.txt"))
+test_corpus = list(read_corpus("sanitizedOutput.txt"))
 
 
 ranks = []
