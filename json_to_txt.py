@@ -4,7 +4,7 @@ import csv
 
 
 # chooseName = input("\nWhat should we name the txt file?\n\n\n")
-txtFileName = "newsData.txt"
+txtFileName = "newsDatatest.txt"
 
 
 
@@ -34,6 +34,6 @@ for line in tweets:
     textData = line.get('text')
     #print(textData)
     with open(txtFileName, 'a') as the_file:
-        the_file.write(textData+"\n")
+        the_file.write(textData)
 
 

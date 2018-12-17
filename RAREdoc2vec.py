@@ -23,19 +23,27 @@ def read_corpus(fname, tokens_only=False):
 train_corpus = list(read_corpus("newsData.txt"))
 test_corpus = list(read_corpus(lee_test_file, tokens_only=True))
 
-print("LOL IS THIS GONNA PRINT A LOT")
+# print("LOL IS THIS GONNA PRINT A LOT")
 
-print(train_corpus)
-print(test_corpus)
+# print(train_corpus)
+# print(test_corpus)
 
 
-print("LOL IDK HOW IT WENT, GOODLUCK")
+print("read text file..")
 
 model = gensim.models.doc2vec.Doc2Vec(vector_size=50, min_count=2, epochs=10)
 
+
+print("building vocab..")
+
 model.build_vocab(train_corpus)
 
+
+print("training..")
+
 model.train(train_corpus, total_examples=model.corpus_count, epochs=model.epochs)
+
+print("done training..")
 
 model.infer_vector(['only', 'you', 'can', 'prevent', 'forest', 'fires'])
 
@@ -76,7 +84,7 @@ inferred_vector = model.infer_vector(test_corpus[doc_id])
 sims = model.docvecs.most_similar([inferred_vector], topn=len(model.docvecs))
 
 # Compare and print the most/median/least similar documents from the train corpus
-print('Test Document ({}): «{}»\n'.format(doc_id, ' '.join(test_corpus[doc_id])))
+print('Test Document ({}): «{}»\n'.format(doc_id, ' '.join(test_corpus[doc_id].words)))
 print(u'SIMILAR/DISSIMILAR DOCS PER MODEL %s:\n' % model)
 for label, index in [('MOST', 0), ('MEDIAN', len(sims)//2), ('LEAST', len(sims) - 1)]:
 	print(u'%s %s: «%s»\n' % (label, sims[index], ' '.join(train_corpus[sims[index][0]].words)))
