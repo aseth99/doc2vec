@@ -10,3 +10,6 @@ __pycache__
 reviews_data.txt
 news.json
 newsData.txt
+RAREd2v.model
+newsDatatest.txt
+sanitizedOutput.txt
