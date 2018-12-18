@@ -20,7 +20,7 @@ def read_corpus(fname, tokens_only=False):
                 # For training data, add tags
                 yield gensim.models.doc2vec.TaggedDocument(gensim.utils.simple_preprocess(line), [i])
 
-train_corpus = list(read_corpus("newsData.txt"))
+train_corpus = list(read_corpus("sanitizedOutput.txt"))
 test_corpus = list(read_corpus(lee_test_file, tokens_only=True))
 
 # print("LOL IS THIS GONNA PRINT A LOT")
@@ -57,6 +57,9 @@ for doc_id in range(len(train_corpus)):
     
     second_ranks.append(sims[1])
 
+model.save("RAREd2v.model")
+print("Model Saved")
+
 print("COLLECTIONS.COUNTER(RANKS)")
 print(collections.Counter(ranks))  # Results vary between runs due to random seeding and very small corpus
 
@@ -84,7 +87,9 @@ inferred_vector = model.infer_vector(test_corpus[doc_id])
 sims = model.docvecs.most_similar([inferred_vector], topn=len(model.docvecs))
 
 # Compare and print the most/median/least similar documents from the train corpus
-print('Test Document ({}): «{}»\n'.format(doc_id, ' '.join(test_corpus[doc_id].words)))
+print('Test Document ')
+print(doc_id)
+print(test_corpus[doc_id])
 print(u'SIMILAR/DISSIMILAR DOCS PER MODEL %s:\n' % model)
 for label, index in [('MOST', 0), ('MEDIAN', len(sims)//2), ('LEAST', len(sims) - 1)]:
 	print(u'%s %s: «%s»\n' % (label, sims[index], ' '.join(train_corpus[sims[index][0]].words)))
@@ -92,5 +97,3 @@ for label, index in [('MOST', 0), ('MEDIAN', len(sims)//2), ('LEAST', len(sims) 
 
 
 #not sure if this will wokr
-model.save("RAREd2v.model")
-print("Model Saved")
